@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import filtersMeta from './filtersMeta.js';
 import { useAppConfig } from '@state';
 import { useDebounce, useSearchParams } from '@hooks';
-import { utils, hotkeys, ServicesManager } from '@ohif/core';
+import OHIF, { utils, hotkeys, ServicesManager } from '@ohif/core';
 
 import {
   Icon,
@@ -53,12 +53,18 @@ function WorkList({
   const { hotkeyDefinitions, hotkeyDefaults } = hotkeysManager;
   const { show, hide } = useModal();
   const { t } = useTranslation();
+  
+    // get size and responsive
+
+  const size = OHIF.utils.useWindowSize();
+  const isMobile = size.width < 500;
+  
   // ~ Modes
   const [appConfig] = useAppConfig();
   // ~ Filters
   const searchParams = useSearchParams();
   const navigate = useNavigate();
-  const STUDIES_LIMIT = 101;
+  const STUDIES_LIMIT = 1001;
   const queryFilterValues = _getQueryFilterValues(searchParams);
   const [filterValues, _setFilterValues] = useState({
     ...defaultFilterValues,
@@ -253,66 +259,78 @@ function WorkList({
       moment(time, ['HH', 'HHmm', 'HHmmss', 'HHmmss.SSS']).format('hh:mm A');
 
     return {
-      row: [
-        {
-          key: 'patientName',
-          content: patientName ? (
-            <TooltipClipboard>{patientName}</TooltipClipboard>
-          ) : (
-            <span className="text-gray-700">(Empty)</span>
-          ),
-          gridCol: 4,
-        },
-        {
-          key: 'mrn',
-          content: <TooltipClipboard>{mrn}</TooltipClipboard>,
-          gridCol: 3,
-        },
-        {
-          key: 'studyDate',
-          content: (
-            <>
-              {studyDate && <span className="mr-4">{studyDate}</span>}
-              {studyTime && <span>{studyTime}</span>}
-            </>
-          ),
-          title: `${studyDate || ''} ${studyTime || ''}`,
-          gridCol: 5,
-        },
-        {
-          key: 'description',
-          content: <TooltipClipboard>{description}</TooltipClipboard>,
-          gridCol: 4,
-        },
-        {
-          key: 'modality',
-          content: modalities,
-          title: modalities,
-          gridCol: 3,
-        },
-        {
-          key: 'accession',
-          content: <TooltipClipboard>{accession}</TooltipClipboard>,
-          gridCol: 3,
-        },
-        {
-          key: 'instances',
-          content: (
-            <>
-              <Icon
-                name="group-layers"
-                className={classnames('inline-flex mr-2 w-4', {
-                  'text-primary-active': isExpanded,
-                  'text-secondary-light': !isExpanded,
-                })}
-              />
-              {instances}
-            </>
-          ),
-          title: (instances || 0).toString(),
-          gridCol: 4,
-        },
-      ],
+      row: !isMobile
+        ? [
+            {
+              key: 'patientName',
+              content: patientName ? (
+                <TooltipClipboard>{patientName}</TooltipClipboard>
+              ) : (
+                <span className="text-gray-700">(Empty)</span>
+              ),
+              gridCol: 4,
+            },
+            {
+              key: 'mrn',
+              content: <TooltipClipboard>{mrn}</TooltipClipboard>,
+              gridCol: 3,
+            },
+            {
+              key: 'studyDate',
+              content: (
+                <>
+                  {studyDate && <span className="mr-4">{studyDate}</span>}
+                  {studyTime && <span>{studyTime}</span>}
+                </>
+              ),
+              title: `${studyDate || ''} ${studyTime || ''}`,
+              gridCol: 5,
+            },
+            {
+              key: 'description',
+              content: <TooltipClipboard>{description}</TooltipClipboard>,
+              gridCol: 4,
+            },
+            {
+              key: 'modality',
+              content: modalities,
+              title: modalities,
+              gridCol: 3,
+            },
+            {
+              key: 'accession',
+              content: <TooltipClipboard>{accession}</TooltipClipboard>,
+              gridCol: 3,
+            },
+            {
+              key: 'instances',
+              content: (
+                <>
+                  <Icon
+                    name="group-layers"
+                    className={classnames('inline-flex mr-2 w-4', {
+                      'text-primary-active': isExpanded,
+                      'text-secondary-light': !isExpanded,
+                    })}
+                  />
+                  {instances}
+                </>
+              ),
+              title: (instances || 0).toString(),
+              gridCol: 4,
+            },
+          ]
+        : [
+            {
+              key: 'patientName',
+              content: patientName ? (
+                <TooltipClipboard>{patientName}</TooltipClipboard>
+              ) : (
+                <span className="text-gray-700">(Empty)</span>
+              ),
+              gridCol: 10,
+            },
+          ],
       // Todo: This is actually running for all rows, even if they are
       // not clicked on.
       expandedContent: (
@@ -554,13 +572,16 @@ function _tryParseInt(str, defaultValue) {
   return retValue;
 }
 
+const today = moment();
+const formattedDay = today.format('YYYYMMDD');
+
 function _getQueryFilterValues(params) {
   const queryFilterValues = {
     patientName: params.get('patientname'),
     mrn: params.get('mrn'),
     studyDate: {
-      startDate: params.get('startdate') || null,
-      endDate: params.get('enddate') || null,
+      startDate: params.get('startdate') || formattedDay,
+      endDate: params.get('enddate') || formattedDay,
     },
     description: params.get('description'),
     modalities: params.get('modalities')
