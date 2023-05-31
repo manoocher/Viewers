@@ -82,6 +82,7 @@ const StudyListFilter = ({
             inputMeta={filtersMeta}
             values={filterValues}
             onValuesChange={onChange}
+            onKeyup={onChange}
             sorting={filterSorting}
             onSortingChange={setFilterSorting}
             isSortingEnabled={isSortingEnabled}
