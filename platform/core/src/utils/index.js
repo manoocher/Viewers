@@ -14,6 +14,7 @@ import isDicomUid from './isDicomUid';
 import formatDate from './formatDate';
 import formatPN from './formatPN';
 import resolveObjectPath from './resolveObjectPath';
+import useWindowSize from './useWindowSize';
 import hierarchicalListUtils from './hierarchicalListUtils';
 import progressTrackingUtils from './progressTrackingUtils';
 import isLowPriorityModality from './isLowPriorityModality';
