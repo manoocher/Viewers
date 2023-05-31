@@ -7,6 +7,6 @@ import moment from 'moment';
  * @param {string} format Desired date format
  * @returns {string} Formatted date
  */
-export default (date, format = 'DD-MMM-YYYY') => {
+export default (date, format = 'DD-MM-YYYY') => {
   return moment(date).format(format);
 };
