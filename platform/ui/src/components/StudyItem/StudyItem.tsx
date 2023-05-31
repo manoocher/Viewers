@@ -28,18 +28,19 @@ const StudyItem = ({
       tabIndex="0"
     >
       <div className="flex flex-col flex-1 px-4 pb-2">
-        <div className="flex flex-row items-center justify-between pt-2 pb-2">
+        {/* <div className="flex flex-row items-center justify-between pt-2 pb-2">
           <div className="text-base text-white">{date}</div>
           <div className="flex flex-row items-center text-base text-blue-300">
             <Icon name="group-layers" className="w-4 mx-2 text-blue-300" />
             {numInstances}
           </div>
-        </div>
+        </div> */}
         <div className="flex flex-row py-1">
           <div className="pr-5 text-xl text-blue-300">{modalities}</div>
-          <div className="text-base text-blue-300 break-words truncate-2-lines">
+          {/* <div className="text-base text-blue-300 break-words truncate-2-lines">
             {description}
-          </div>
+          </div> */}
+          <div className="text-base text-white">{date}</div>
         </div>
       </div>
       {!!trackedSeries && (
