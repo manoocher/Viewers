@@ -53,12 +53,12 @@ function WorkList({
   const { hotkeyDefinitions, hotkeyDefaults } = hotkeysManager;
   const { show, hide } = useModal();
   const { t } = useTranslation();
-  
-    // get size and responsive
+
+  // get size and responsive
 
   const size = OHIF.utils.useWindowSize();
   const isMobile = size.width < 500;
-  
+
   // ~ Modes
   const [appConfig] = useAppConfig();
   // ~ Filters
@@ -71,7 +71,7 @@ function WorkList({
     ...queryFilterValues,
   });
 
-  const debouncedFilterValues = useDebounce(filterValues, 200);
+  const debouncedFilterValues = useDebounce(filterValues, 500);
   const { resultsPerPage, pageNumber, sortBy, sortDirection } = filterValues;
 
   /*

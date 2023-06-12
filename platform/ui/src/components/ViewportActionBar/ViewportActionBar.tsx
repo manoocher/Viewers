@@ -134,9 +134,16 @@ const ViewportActionBar = ({
       <span ref={studyDateElemRef} className={studyDateClasses()}>
         {studyDate}
       </span>
+
       {showSeriesDesc && (
         <>
           <div className={separatorClasses}></div>
+          <span className="ml-1 text-aqua-pale text-large">{patientName}</span>
+          <div className={separatorClasses}></div>
+          <span className="ml-1 text-aqua-pale text-large">{MRN}</span>
+
+          <div className={separatorClasses}></div>
+          <span className="ml-1 text-aqua-pale text-large">{patientAge}</span>
           <span
             ref={seriesDescElemRef}
             className={`mr-1 text-aqua-pale ${textEllipsisClasses}`}

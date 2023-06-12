@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import getGridWidthClass from '../../utils/getGridWidthClass'
+import getGridWidthClass from '../../utils/getGridWidthClass';
 
 import {
   InputText,
@@ -126,13 +126,13 @@ const InputGroup = ({
   };
   return (
     <div className="container m-auto relative flex flex-col">
-      <div className="flex flex-row w-full">
+      <div className="flex flex-col md:flex-row w-full">
         {inputMeta.map(inputMeta => {
           return (
             <div
               key={inputMeta.name}
               className={classnames(
-                'pl-4 first:pl-12',
+                'pl-4 md:first:pl-12 w-full',
                 getGridWidthClass(inputMeta.gridCol)
               )}
             >

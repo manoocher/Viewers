@@ -43,18 +43,16 @@ function Header({
               <Icon name="chevron-left" className="w-8 text-primary-active" />
             )}
             <div className="ml-4">
-              {WhiteLabeling?.createLogoComponentFn?.(React, props) || (
-                <Svg name="logo-ohif" />
-              )}
+              {WhiteLabeling?.createLogoComponentFn?.(React, props)}
             </div>
           </div>
         </div>
         <div className="flex items-center">{children}</div>
         <div className="flex items-center">
           <span className="mr-3 text-lg text-common-light">
-            {t('INVESTIGATIONAL USE ONLY')}
+            {t('MedData Viewer')}
           </span>
-          <Dropdown id="options" showDropdownIcon={false} list={menuOptions}>
+          {/* <Dropdown id="options" showDropdownIcon={false} list={menuOptions}>
             <IconButton
               id={'options-settings-icon'}
               variant="text"
@@ -73,7 +71,7 @@ function Header({
             >
               <Icon name="chevron-down" />
             </IconButton>
-          </Dropdown>
+          </Dropdown> */}
         </div>
       </div>
     </NavBar>

@@ -195,7 +195,9 @@ function modeFactory() {
             id: ohif.layout,
             props: {
               leftPanels: [tracked.thumbnailList],
-              rightPanels: [dicomSeg.panel, tracked.measurements],
+              // rightPanels: [dicomSeg.panel, tracked.measurements],
+              rightPanels: [],
+
               rightPanelDefaultClosed: true,
               viewports: [
                 {

@@ -52,6 +52,7 @@ const utils = {
   seriesSortCriteria,
   writeScript,
   formatDate,
+  useWindowSize,
   formatPN,
   b64toBlob,
   urlUtil,

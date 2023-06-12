@@ -48,9 +48,15 @@ window.config = {
         // wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
 
         // new server
-        wadoUriRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
-        qidoRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
-        wadoRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
+        // wadoUriRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
+        // qidoRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
+        // wadoRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
+        // wadoUriRoot: 'https://irmetpacs.meddataviewer.com:7100/wado',
+        // qidoRoot: 'https://irmetpacs.meddataviewer.com:7100/dicom-web',
+        // wadoRoot: 'https://irmetpacs.meddataviewer.com:7100/dicom-web',
+        wadoUriRoot: 'https://yasampacs.meddataviewer.com:7100/wado',
+        qidoRoot: 'https://yasampacs.meddataviewer.com:7100/dicom-web',
+        wadoRoot: 'https://yasampacs.meddataviewer.com:7100/dicom-web',
 
         qidoSupportsIncludeField: false,
         supportsReject: false,
@@ -100,25 +106,24 @@ window.config = {
     // Could use services manager here to bring up a dialog/modal if needed.
     console.warn('test, navigate to https://ohif.org/');
   },
-  // whiteLabeling: {
-  //   /* Optional: Should return a React component to be rendered in the "Logo" section of the application's Top Navigation bar */
-  //   createLogoComponentFn: function (React) {
-  //     return React.createElement(
-  //       'a',
-  //       {
-  //         target: '_self',
-  //         rel: 'noopener noreferrer',
-  //         className: 'text-purple-600 line-through',
-  //         href: '/',
-  //       },
-  //       React.createElement('img',
-  //         {
-  //           src: './assets/customLogo.svg',
-  //           className: 'w-8 h-8',
-  //         }
-  //       ))
-  //   },
-  // },
+  whiteLabeling: {
+    /* Optional: Should return a React component to be rendered in the "Logo" section of the application's Top Navigation bar */
+    createLogoComponentFn: function(React) {
+      return React.createElement(
+        'a',
+        {
+          target: '_self',
+          rel: 'noopener noreferrer',
+          className: 'text-purple-600 line-through',
+          href: '/',
+        },
+        React.createElement('img', {
+          src: './assets/customLogo.svg',
+          className: 'w-8 h-8',
+        })
+      );
+    },
+  },
   hotkeys: [
     {
       commandName: 'incrementActiveViewport',
